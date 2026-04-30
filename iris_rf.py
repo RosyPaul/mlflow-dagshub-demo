@@ -45,7 +45,7 @@ with mlflow.start_run():
     mlflow.log_artifact('Confusion_matrix.png')
 
     mlflow.log_artifact(__file__)
-    mlflow.sklearn.log_model(rf,"Randor forest")
+    mlflow.sklearn.log_model(rf,"random forest")
 
     mlflow.set_tag('author','Suvadip')
     
