@@ -1,8 +1,5 @@
 import mlflow
-
-# mlflow.set_tracking_uri("file:./mlruns")
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
-
+import dagshub
 import mlflow.sklearn
 from sklearn.datasets import load_iris
 from sklearn.tree import DecisionTreeClassifier
@@ -10,6 +7,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score,confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+mlflow.set_tracking_uri("https://dagshub.com/RosyPaul/mlflow-dagshub-demo.mlflow")
+dagshub.init(repo_owner='RosyPaul', repo_name='mlflow-dagshub-demo', mlflow=True)
+
 
 iris=load_iris()
 X=iris.data
@@ -29,7 +30,6 @@ with mlflow.start_run():
 
     mlflow.log_metric('accuracy',accuracy)
     mlflow.log_param('max_depth',max_depth)
-    # mlflow.log_param('n_estimators',n_estimators)
 
     cm=confusion_matrix(y_test,y_pred)
     plt.figure(figsize=(6,6))
