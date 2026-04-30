@@ -18,7 +18,7 @@ y=iris.target
 
 X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2, random_state= 42)
 
-max_depth = 10
+max_depth = 11
 
 mlflow.set_experiment('iris-dt')
 with mlflow.start_run():
@@ -43,7 +43,7 @@ with mlflow.start_run():
     mlflow.log_artifact('Confusion_matrix.png')
 
     mlflow.log_artifact(__file__)
-    # mlflow.sklearn.log_model(dt,"decision tree")
+    mlflow.sklearn.log_model(dt,"decision tree")
 
     mlflow.set_tag('author','rosy')
     
